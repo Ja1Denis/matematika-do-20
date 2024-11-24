@@ -1,0 +1,256 @@
+:root {
+    --primary-color: #4CAF50;
+    --secondary-color: #2196F3;
+    --background-color: #f0f2f5;
+    --card-color: #ffffff;
+    --text-color: #333333;
+    --success-color: #4CAF50;
+    --error-color: #f44336;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Comic Neue', cursive;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+h1 {
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.score {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--secondary-color);
+}
+
+.task-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.task-card {
+    background-color: var(--card-color);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+}
+
+.task {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.option {
+    background-color: var(--background-color);
+    border: none;
+    border-radius: 10px;
+    padding: 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.option:hover {
+    transform: translateY(-2px);
+    background-color: #e0e0e0;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.button:hover {
+    background-color: #388E3C;
+}
+
+#hint {
+    background-color: var(--secondary-color);
+}
+
+#hint:hover {
+    background-color: #1976D2;
+}
+
+.feedback {
+    text-align: center;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+    font-size: 1.2rem;
+}
+
+.feedback.success {
+    background-color: #E8F5E9;
+    color: var(--success-color);
+}
+
+.feedback.error {
+    background-color: #FFEBEE;
+    color: var(--error-color);
+}
+
+.hidden {
+    display: none;
+}
+
+.input-container {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+#userInput {
+    padding: 0.8rem;
+    font-size: 1.2rem;
+    border: 2px solid var(--primary-color);
+    border-radius: 8px;
+    width: 150px;
+    text-align: center;
+}
+
+#userInput:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.2);
+}
+
+/* Animacije */
+@keyframes pop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.pop {
+    animation: pop 0.3s ease;
+}
+
+/* Print styles */
+@media print {
+    .container {
+        padding: 0;
+    }
+
+    .controls, .options, .score, .input-container, #feedback {
+        display: none !important;
+    }
+
+    .print-only {
+        display: block !important;
+    }
+
+    #printSection {
+        padding: 20px;
+    }
+
+    #printSection h2 {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .print-task {
+        font-size: 1.5rem;
+        margin: 1.5rem 0;
+        padding: 1rem;
+        border: 1px solid #ccc;
+        page-break-inside: avoid;
+    }
+
+    .print-task .answer-line {
+        border-bottom: 1px solid #000;
+        display: inline-block;
+        width: 100px;
+        margin-left: 10px;
+    }
+}
+
+/* Hide print section by default */
+.print-only {
+    display: none;
+}
+
+/* Responzivnost */
+@media (max-width: 600px) {
+    .container {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .task {
+        font-size: 1.5rem;
+    }
+
+    .option {
+        font-size: 1.2rem;
+        padding: 0.8rem;
+    }
+
+    .controls {
+        flex-direction: column;
+    }
+
+    .button {
+        width: 100%;
+    }
+
+    .input-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #userInput {
+        width: 100%;
+        max-width: 200px;
+    }
+}

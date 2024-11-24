@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matematika 1. razred - Brojevi do 20</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Matematika je zabavna! 🎯</h1>
+            <div class="score">Bodovi: <span id="score">0</span></div>
+        </header>
+
+        <main>
+            <div class="task-container">
+                <div class="task-card">
+                    <div id="task" class="task">
+                        <!-- Ovdje će se generirati zadatak -->
+                    </div>
+                    <div class="input-container hidden">
+                        <input type="number" id="userInput" placeholder="Upiši odgovor" min="0" max="20">
+                        <button id="submitAnswer" class="button">Provjeri</button>
+                    </div>
+                    <div class="options" id="options">
+                        <!-- Ovdje će se generirati opcije odgovora -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button id="newTask" class="button">Novi zadatak</button>
+                <button id="hint" class="button">Pomoć</button>
+                <button id="toggleInput" class="button">Način unosa</button>
+                <button id="printTasks" class="button">Isprintaj zadatke</button>
+            </div>
+
+            <div id="feedback" class="feedback hidden">
+                <!-- Ovdje će se prikazivati povratne informacije -->
+            </div>
+
+            <!-- Dio za printanje -->
+            <div id="printSection" class="print-only">
+                <h2>Zadaci za vježbu</h2>
+                <div id="printTasks"></div>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
