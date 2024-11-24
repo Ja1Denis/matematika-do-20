@@ -193,19 +193,72 @@ class MathGame {
     }
 
     printTasks() {
-        const printSection = document.getElementById('printTasks');
-        printSection.innerHTML = '';
+        // Generiraj zadatke
+        let printContent = `
+            <style>
+                @media print {
+                    body { font-family: Arial, sans-serif; }
+                    .print-task { 
+                        font-size: 16pt; 
+                        margin: 30px 0;
+                        page-break-inside: avoid;
+                    }
+                    h2 { 
+                        font-size: 20pt; 
+                        text-align: center;
+                        margin-bottom: 30px;
+                    }
+                }
+            </style>
+            <h2>Zadaci za vježbu</h2>
+        `;
 
-        // Generiraj 10 zadataka za print
         for (let i = 1; i <= 10; i++) {
-            const taskDiv = document.createElement('div');
-            taskDiv.className = 'print-task';
-            taskDiv.innerHTML = `${i}. ${this.generatePrintTask()}`;
-            printSection.appendChild(taskDiv);
+            printContent += `<div class="print-task">${i}. ${this.generatePrintTask()}</div>`;
         }
 
-        // Otvori print dijalog
+        // Spremi trenutni sadržaj
+        const originalContent = document.body.innerHTML;
+
+        // Postavi sadržaj za print
+        document.body.innerHTML = printContent;
+
+        // Print
         window.print();
+
+        // Vrati originalni sadržaj
+        document.body.innerHTML = originalContent;
+
+        // Ponovno inicijaliziraj igru
+        this.initializeGame();
+    }
+
+    initializeGame() {
+        // Ponovno dohvati sve DOM elemente nakon vraćanja HTML-a
+        this.taskElement = document.getElementById('task');
+        this.optionsElement = document.getElementById('options');
+        this.scoreElement = document.getElementById('score');
+        this.feedbackElement = document.getElementById('feedback');
+        this.newTaskButton = document.getElementById('newTask');
+        this.hintButton = document.getElementById('hint');
+        this.toggleInputButton = document.getElementById('toggleInput');
+        this.printTasksButton = document.getElementById('printTasks');
+        this.userInput = document.getElementById('userInput');
+        this.submitAnswerButton = document.getElementById('submitAnswer');
+        this.inputContainer = document.querySelector('.input-container');
+
+        // Ponovno dodaj event listenere
+        this.newTaskButton.addEventListener('click', () => this.generateNewTask());
+        this.hintButton.addEventListener('click', () => this.showHint());
+        this.toggleInputButton.addEventListener('click', () => this.toggleInputMode());
+        this.printTasksButton.addEventListener('click', () => this.printTasks());
+        this.submitAnswerButton.addEventListener('click', () => this.checkUserInput());
+        this.userInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') this.checkUserInput();
+        });
+
+        // Generiraj novi zadatak
+        this.generateNewTask();
     }
 }
 

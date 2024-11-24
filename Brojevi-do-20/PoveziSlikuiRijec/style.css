@@ -1,0 +1,263 @@
+:root {
+    --primary-color: #4CAF50;
+    --secondary-color: #2196F3;
+    --warning-color: #f44336;
+    --success-color: #4CAF50;
+    --background-color: #f0f2f5;
+    --card-background: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Comic Neue', cursive;
+    background-color: var(--background-color);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 2.5em;
+}
+
+.score-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.difficulty-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Comic Neue', cursive;
+    font-size: 1em;
+    transition: all 0.3s ease;
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.button:hover {
+    opacity: 0.9;
+    transform: scale(1.05);
+}
+
+.button.active {
+    background-color: var(--primary-color);
+}
+
+.task-container {
+    margin-bottom: 20px;
+}
+
+.task-card {
+    background-color: var(--card-background);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.task {
+    font-size: 1.3em;
+    margin-bottom: 10px;
+}
+
+.timer {
+    font-size: 1.2em;
+    color: var(--primary-color);
+}
+
+.game-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+    gap: 20px;
+}
+
+.images-container, .words-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+    background-color: var(--card-background);
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    min-height: 300px;
+}
+
+.draggable {
+    cursor: move;
+    padding: 10px;
+    background-color: var(--background-color);
+    border-radius: 5px;
+    text-align: center;
+    user-select: none;
+    position: relative;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.draggable:hover {
+    transform: scale(1.05);
+    z-index: 10;
+}
+
+.draggable.correct {
+    animation: correctMatch 0.5s ease;
+}
+
+.draggable.dragging {
+    opacity: 0.5;
+}
+
+@keyframes correctMatch {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.feedback {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+.feedback.success {
+    background-color: var(--success-color);
+    color: white;
+}
+
+.feedback.error {
+    background-color: var(--warning-color);
+    color: white;
+}
+
+.hidden {
+    display: none;
+}
+
+.game-modes {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.mode-button {
+    background-color: var(--secondary-color);
+    transition: all 0.3s ease;
+}
+
+.mode-button.active {
+    background-color: var(--primary-color);
+    transform: scale(1.05);
+}
+
+.tooltip {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 0.9em;
+    z-index: 1000;
+    max-width: 200px;
+    pointer-events: none;
+}
+
+.fun-fact {
+    background-color: var(--card-background);
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-align: center;
+    font-size: 1.1em;
+    color: var(--primary-color);
+}
+
+.achievement {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: var(--success-color);
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    animation: slideIn 0.5s ease;
+    z-index: 1000;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+}
+
+@media print {
+    .controls, .difficulty-controls, .timer {
+        display: none;
+    }
+    
+    .game-container {
+        page-break-inside: avoid;
+    }
+}
+
+@media (max-width: 768px) {
+    .game-container {
+        flex-direction: column;
+    }
+    
+    .controls {
+        flex-direction: column;
+    }
+    
+    .button {
+        width: 100%;
+    }
+    
+    .game-modes {
+        flex-direction: column;
+    }
+    
+    .mode-button {
+        width: 100%;
+    }
+}

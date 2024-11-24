@@ -175,46 +175,29 @@ h1 {
 
 /* Print styles */
 @media print {
-    .container {
-        padding: 0;
-    }
-
-    .controls, .options, .score, .input-container, #feedback {
+    .container, .controls, .options, .score, .input-container, #feedback {
         display: none !important;
     }
 
-    .print-only {
-        display: block !important;
-    }
-
-    #printSection {
-        padding: 20px;
-    }
-
-    #printSection h2 {
-        text-align: center;
-        margin-bottom: 2rem;
-    }
-
     .print-task {
-        font-size: 1.5rem;
-        margin: 1.5rem 0;
-        padding: 1rem;
-        border: 1px solid #ccc;
+        display: block;
+        font-size: 16pt;
+        margin: 30px 0;
         page-break-inside: avoid;
     }
 
-    .print-task .answer-line {
-        border-bottom: 1px solid #000;
-        display: inline-block;
-        width: 100px;
-        margin-left: 10px;
+    h2 {
+        font-size: 20pt;
+        text-align: center;
+        margin-bottom: 30px;
     }
 }
 
-/* Hide print section by default */
-.print-only {
-    display: none;
+/* Hide print section during normal use */
+@media screen {
+    .print-only {
+        display: none !important;
+    }
 }
 
 /* Responzivnost */

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geometrijski likovi</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Poveži geometrijske likove! 📐</h1>
+            <div class="score-container">
+                <div class="score">Bodovi: <span id="score">0</span></div>
+                <div class="level">Razina: <span id="level">1</span></div>
+                <div class="high-score">Najbolji rezultat: <span id="highScore">0</span></div>
+            </div>
+        </header>
+
+        <main>
+            <div class="game-modes">
+                <button id="basicMode" class="button mode-button active">Osnovni mod</button>
+                <button id="propertiesMode" class="button mode-button">Svojstva</button>
+                <button id="anglesMode" class="button mode-button">Kutovi</button>
+                <button id="sidesMode" class="button mode-button">Stranice</button>
+            </div>
+
+            <div class="difficulty-controls">
+                <button id="easyMode" class="button active">Lagano</button>
+                <button id="mediumMode" class="button">Srednje</button>
+                <button id="hardMode" class="button">Teško</button>
+            </div>
+
+            <div class="task-container">
+                <div class="task-card">
+                    <div id="task" class="task">
+                        Poveži geometrijske likove
+                    </div>
+                    <div class="timer" id="timer">Preostalo vrijeme: <span>30</span>s</div>
+                </div>
+            </div>
+
+            <div class="game-container">
+                <div id="images-container" class="images-container"></div>
+                <div id="words-container" class="words-container"></div>
+            </div>
+
+            <div class="controls">
+                <button id="newTask" class="button">Novi zadatak</button>
+                <button id="checkAnswer" class="button">Provjeri</button>
+                <button id="hint" class="button">Pomoć</button>
+                <button id="toggleSound" class="button">🔊 Zvuk</button>
+                <button id="printTasks" class="button">🖨️ Ispiši zadatke</button>
+            </div>
+
+            <div id="feedback" class="feedback hidden">
+                <!-- Ovdje će se prikazivati povratne informacije -->
+            </div>
+
+            <div id="funFact" class="fun-fact hidden">
+                <!-- Ovdje će se prikazivati zanimljive činjenice -->
+            </div>
+
+            <div id="tooltip" class="tooltip hidden">
+                <!-- Ovdje će se prikazivati opisi likova -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Audio elementi -->
+    <audio id="correctSound" src="https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3"></audio>
+    <audio id="wrongSound" src="https://assets.mixkit.co/active_storage/sfx/2001/2001-preview.mp3"></audio>
+    <audio id="levelUpSound" src="https://assets.mixkit.co/active_storage/sfx/2002/2002-preview.mp3"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>

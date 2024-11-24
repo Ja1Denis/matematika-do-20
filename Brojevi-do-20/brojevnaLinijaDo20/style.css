@@ -1,0 +1,253 @@
+:root {
+    --primary-color: #4CAF50;
+    --secondary-color: #2196F3;
+    --background-color: #f0f2f5;
+    --card-color: #ffffff;
+    --text-color: #333333;
+    --success-color: #4CAF50;
+    --error-color: #f44336;
+    --number-line-color: #333333;
+    --marker-color: #e91e63;
+    --arrow-color: #2196F3;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Comic Neue', cursive;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+h1 {
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.score {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--secondary-color);
+}
+
+.task-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.task-card {
+    background-color: var(--card-color);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+.task {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.number-line-container {
+    width: 100%;
+    margin: 2rem 0;
+    position: relative;
+}
+
+.canvas-container {
+    width: 100%;
+    height: 200px;
+    margin: 20px auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+#numberLine {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border: 1px solid #eee;
+}
+
+.number-line-controls {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.control-button {
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.control-button:hover {
+    transform: scale(1.1);
+    background-color: #1976D2;
+}
+
+.control-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.input-container {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin: 1.5rem 0;
+}
+
+#userInput {
+    padding: 0.8rem;
+    font-size: 1.2rem;
+    border: 2px solid var(--primary-color);
+    border-radius: 8px;
+    width: 150px;
+    text-align: center;
+}
+
+#userInput:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.2);
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.button:hover {
+    background-color: #388E3C;
+}
+
+#hint {
+    background-color: var(--secondary-color);
+}
+
+#hint:hover {
+    background-color: #1976D2;
+}
+
+.feedback {
+    text-align: center;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    white-space: pre-line;
+}
+
+.feedback.correct {
+    background-color: #E8F5E9;
+    color: var(--success-color);
+}
+
+.feedback.incorrect {
+    background-color: #FFEBEE;
+    color: var(--error-color);
+}
+
+.feedback.hint {
+    background-color: #E3F2FD;
+    color: var(--secondary-color);
+}
+
+.hidden {
+    display: none;
+}
+
+/* Animacije */
+@keyframes pop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.pop {
+    animation: pop 0.3s ease;
+}
+
+/* Print styles */
+@media print {
+    .container, .controls, .input-container, #feedback {
+        display: none !important;
+    }
+
+    .print-task {
+        display: block;
+        margin: 30px 0;
+        page-break-inside: avoid;
+    }
+
+    .print-task canvas {
+        width: 100%;
+        height: 100px;
+        margin: 10px 0;
+    }
+
+    h2 {
+        font-size: 20pt;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+}
+
+/* Hide print section during normal use */
+@media screen {
+    .print-only {
+        display: none !important;
+    }
+}

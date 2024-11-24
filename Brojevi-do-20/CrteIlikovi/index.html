@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crtanje ravne linije</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Nacrtaj ravnu liniju! 📏</h1>
+            <div class="score-container">
+                <div class="score">Bodovi: <span id="score">0</span></div>
+                <div class="level">Razina: <span id="level">1</span></div>
+                <div class="high-score">Najbolji rezultat: <span id="highScore">0</span></div>
+            </div>
+        </header>
+
+        <main>
+            <div class="difficulty-controls">
+                <button id="easyMode" class="button active">Lagano</button>
+                <button id="mediumMode" class="button">Srednje</button>
+                <button id="hardMode" class="button">Teško</button>
+            </div>
+
+            <div class="task-container">
+                <div class="task-card">
+                    <div id="task" class="task">
+                        Nacrtaj ravnu liniju koja prolazi kroz označene točke i siječe zadanu liniju
+                    </div>
+                    <div class="timer" id="timer">Preostalo vrijeme: <span>30</span>s</div>
+                </div>
+            </div>
+
+            <div class="canvas-container">
+                <canvas id="drawingCanvas"></canvas>
+            </div>
+
+            <div class="controls">
+                <button id="newTask" class="button">Novi zadatak</button>
+                <button id="checkLine" class="button">Provjeri</button>
+                <button id="clearCanvas" class="button">Obriši</button>
+                <button id="hint" class="button">Pomoć</button>
+                <button id="toggleSound" class="button">🔊 Zvuk</button>
+                <button id="printTasks" class="button">🖨️ Ispiši zadatke</button>
+            </div>
+
+            <div id="feedback" class="feedback hidden">
+                <!-- Ovdje će se prikazivati povratne informacije -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Audio elementi -->
+    <audio id="correctSound" src="https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3"></audio>
+    <audio id="wrongSound" src="https://assets.mixkit.co/active_storage/sfx/2001/2001-preview.mp3"></audio>
+    <audio id="levelUpSound" src="https://assets.mixkit.co/active_storage/sfx/2002/2002-preview.mp3"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>

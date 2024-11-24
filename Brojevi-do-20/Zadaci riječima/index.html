@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zadaci Riječima Do 20</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Zadaci Riječima Do 20</h1>
+        <div class="task-container">
+            <div id="taskText" class="task-text"></div>
+            <div class="input-container">
+                <input type="number" id="userAnswer" placeholder="Upiši svoj odgovor">
+            </div>
+            <div class="controls">
+                <button id="newTask" class="button">Novi zadatak</button>
+                <button id="checkAnswer" class="button">Provjeri</button>
+                <button id="printTasks" class="button">🖨️ Ispiši zadatke</button>
+            </div>
+        </div>
+        <div id="result" class="result"></div>
+        <div id="score" class="score">Bodovi: 0</div>
+    </div>
+
+    <!-- Kontejner za print preview -->
+    <div id="printPreview" class="print-preview">
+        <div class="print-preview-content">
+            <div class="print-preview-header">
+                <h2>Zadaci Riječima Do 20</h2>
+                <div class="print-preview-controls">
+                    <button id="doPrint" class="button">🖨️ Ispiši</button>
+                    <button id="closePreview" class="button">✖️ Zatvori</button>
+                </div>
+            </div>
+            <div id="printTaskList" class="print-task-list"></div>
+        </div>
+    </div>
+
+    <script src="names.js"></script>
+    <script src="declension.js"></script>
+    <script src="tasks.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
