@@ -102,12 +102,12 @@ function generirajZadatke() {
         
         input.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
-                provjeriOdgovor(i);
+                provjeriOdgovor(i, parseInt(input.value));
                 e.preventDefault();
             }
         });
         
-        button.addEventListener('click', () => provjeriOdgovor(i));
+        button.addEventListener('click', () => provjeriOdgovor(i, parseInt(input.value)));
         
         zadaciContainer.appendChild(zadatakDiv);
     }
@@ -122,21 +122,26 @@ function shuffleArray(array) {
     return array;
 }
 
-function provjeriOdgovor(index) {
+function provjeriOdgovor(index, odgovor) {
     if (trenutniZadaci[index].rijesen) return;
 
-    const input = document.getElementById(`zadatak${index}`);
-    const odgovor = parseInt(input.value);
     const zadatak = trenutniZadaci[index];
-    const zadatakElement = input.parentElement;
+    const zadatakElement = document.querySelectorAll('.zadatak')[index];
+    const input = zadatakElement.querySelector('input');
 
     if (odgovor === zadatak.rezultat) {
         zadatakElement.classList.remove('netocno');
         zadatakElement.classList.add('tocno');
-        zadatak.rijesen = true;
         if (!zadatakElement.classList.contains('rijeseno')) {
             bodovi++;
             zadatakElement.classList.add('rijeseno');
+            // Dodaj kvačicu
+            const checkmark = document.createElement('span');
+            checkmark.className = 'checkmark';
+            checkmark.innerHTML = '✓';
+            if (!zadatakElement.querySelector('.checkmark')) {
+                zadatakElement.appendChild(checkmark);
+            }
             if (testMode) {
                 bodoviElement.textContent = bodovi;
             }
@@ -146,6 +151,11 @@ function provjeriOdgovor(index) {
     } else {
         zadatakElement.classList.remove('tocno');
         zadatakElement.classList.add('netocno');
+        // Ukloni kvačicu ako postoji
+        const checkmark = zadatakElement.querySelector('.checkmark');
+        if (checkmark) {
+            checkmark.remove();
+        }
         prikaziPoruku('Netočno. Pokušaj ponovno!');
         setTimeout(() => zadatakElement.classList.remove('netocno'), 1000);
     }
@@ -260,5 +270,6 @@ function prikaziPoruku(tekst) {
 startTestBtn.addEventListener('click', startTest);
 generirajZadatkeBtn.addEventListener('click', generirajZadatke);
 
-// Inicijalno generiranje tablice
+// Inicijalno generiranje tablice i zadataka
 generirajTablicu();
+generirajZadatke();

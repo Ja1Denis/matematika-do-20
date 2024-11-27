@@ -72,13 +72,21 @@ function generirajZadatke() {
 
         const zadatakDiv = document.createElement('div');
         zadatakDiv.className = 'zadatak';
-        zadatakDiv.innerHTML = `
-            ${zadatak.broj1} × ${zadatak.broj2} = 
-            <input type="number" id="odgovor${i}" />
-        `;
+        
+        const input = document.createElement('input');
+        input.type = 'number';
+        input.id = `odgovor${i}`;
+        
+        const button = document.createElement('button');
+        button.textContent = 'Provjeri';
+        button.onclick = () => provjeriOdgovor(i, parseInt(input.value));
+        
+        zadatakDiv.innerHTML = `${zadatak.broj1} × ${zadatak.broj2} = `;
+        zadatakDiv.appendChild(input);
+        zadatakDiv.appendChild(button);
+        
         zadaciDiv.appendChild(zadatakDiv);
 
-        const input = zadatakDiv.querySelector('input');
         input.addEventListener('keyup', (e) => {
             if (e.key === 'Enter') {
                 provjeriOdgovor(i, parseInt(input.value));
@@ -99,6 +107,13 @@ function provjeriOdgovor(index, odgovor) {
         if (!zadatakDiv.classList.contains('rijeseno')) {
             bodovi++;
             zadatakDiv.classList.add('rijeseno');
+            // Dodaj kvačicu
+            const checkmark = document.createElement('span');
+            checkmark.className = 'checkmark';
+            checkmark.innerHTML = '✓';
+            if (!zadatakDiv.querySelector('.checkmark')) {
+                zadatakDiv.appendChild(checkmark);
+            }
             if (testMode) {
                 document.getElementById('bodovi').textContent = bodovi;
             }
@@ -106,6 +121,11 @@ function provjeriOdgovor(index, odgovor) {
     } else {
         zadatakDiv.classList.remove('correct');
         zadatakDiv.classList.add('incorrect');
+        // Ukloni kvačicu ako postoji
+        const checkmark = zadatakDiv.querySelector('.checkmark');
+        if (checkmark) {
+            checkmark.remove();
+        }
     }
 
     if (testMode && bodovi === 10) {

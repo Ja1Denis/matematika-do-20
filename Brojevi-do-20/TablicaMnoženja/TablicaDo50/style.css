@@ -25,18 +25,28 @@ h1 {
 }
 
 button {
-    background-color: #1a73e8;
+    padding: 8px 15px;
+    margin: 0 5px;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: #4CAF50;
     color: white;
     border: none;
-    padding: 10px 20px;
-    margin: 0 10px;
-    border-radius: 5px;
-    cursor: pointer;
+    border-radius: 4px;
     transition: background-color 0.3s;
 }
 
 button:hover {
-    background-color: #1557b0;
+    background-color: #45a049;
+}
+
+button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.zadatak button {
+    margin-left: 10px;
 }
 
 .test-info {
@@ -88,12 +98,11 @@ td:hover {
 }
 
 .zadatak {
-    display: flex;
-    align-items: center;
     margin: 10px 0;
     padding: 10px;
-    border: 1px solid #ddd;
     border-radius: 5px;
+    display: flex;
+    align-items: center;
 }
 
 .zadatak input {
@@ -104,14 +113,19 @@ td:hover {
     border-radius: 3px;
 }
 
-.zadatak.correct {
-    background-color: #e6f4ea;
-    border-color: #137333;
+.correct {
+    background-color: rgba(76, 175, 80, 0.1);
 }
 
-.zadatak.incorrect {
-    background-color: #fce8e6;
-    border-color: #c5221f;
+.incorrect {
+    background-color: rgba(244, 67, 54, 0.1);
+}
+
+.checkmark {
+    color: #4CAF50;
+    margin-left: 10px;
+    font-size: 1.2em;
+    font-weight: bold;
 }
 
 @media print {
