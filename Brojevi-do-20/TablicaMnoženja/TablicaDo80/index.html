@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tablica množenja - Broj 8</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Tablica množenja broja 8</h1>
+            
+            <div class="controls">
+                <button id="generirajZadatke">Generiraj zadatke</button>
+                <button id="startTest">Započni test</button>
+            </div>
+
+            <div class="test-info">
+                <div class="vrijeme-container">
+                    Preostalo vrijeme: <span id="vrijeme">300</span>s
+                </div>
+                <div class="bodovi-container">
+                    Bodovi: <span id="bodovi">0</span>/10
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="tablica-container">
+                <table id="tablicaMnozenja"></table>
+            </div>
+            
+            <div class="zadaci-container" id="zadaci"></div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

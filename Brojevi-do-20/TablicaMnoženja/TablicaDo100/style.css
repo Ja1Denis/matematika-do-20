@@ -1,0 +1,274 @@
+:root {
+    --primary-color: #4a90e2;
+    --secondary-color: #f5f5f5;
+    --border-radius: 8px;
+    --spacing: 20px;
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    line-height: 1.6;
+    background-color: #f0f2f5;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--spacing);
+}
+
+header {
+    text-align: center;
+    margin-bottom: var(--spacing);
+}
+
+h1 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.controls {
+    margin-bottom: 20px;
+}
+
+button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 16px;
+    margin: 0 5px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #357abd;
+}
+
+button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--spacing);
+}
+
+.tablica-container, .zadaci-container {
+    background: white;
+    padding: var(--spacing);
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+    font-size: 14px;
+}
+
+th {
+    background-color: var(--secondary-color);
+    font-weight: bold;
+}
+
+td {
+    transition: background-color 0.3s ease;
+}
+
+td:hover {
+    background-color: #e3f2fd;
+    cursor: pointer;
+}
+
+.highlight {
+    background-color: #e3f2fd;
+}
+
+.tocno-rjesenje {
+    background-color: #c8e6c9;
+    animation: pulse 1s;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.zadatak {
+    background-color: var(--secondary-color);
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: var(--border-radius);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.zadatak input {
+    width: 80px;
+    padding: 5px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.zadatak input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+.zadatak.tocno {
+    background-color: #c8e6c9;
+}
+
+.zadatak.netocno {
+    background-color: #ffcdd2;
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
+
+.poruka {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border-radius: var(--border-radius);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+}
+
+.test-info {
+    background-color: var(--secondary-color);
+    padding: 15px;
+    border-radius: var(--border-radius);
+    margin: 20px 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+.timer, .score {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.timer.warning {
+    color: #f44336;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.zadatak.test-mode {
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.rezultat-testa {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    text-align: center;
+    z-index: 1000;
+}
+
+.rezultat-testa h2 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.rezultat-testa p {
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+.rezultat-testa .ocjena {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+.rezultat-testa button {
+    margin-top: 20px;
+}
+
+@media print {
+    .controls {
+        display: none;
+    }
+
+    .container {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    main {
+        display: block;
+    }
+
+    .tablica-container, .zadaci-container {
+        box-shadow: none;
+        break-inside: avoid;
+    }
+
+    .poruka {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    main {
+        grid-template-columns: 1fr;
+    }
+
+    .container {
+        padding: 10px;
+    }
+
+    button {
+        margin-bottom: 10px;
+    }
+
+    th, td {
+        padding: 4px;
+        font-size: 12px;
+    }
+}
