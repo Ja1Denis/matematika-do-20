@@ -1,0 +1,59 @@
+PROBLEMI I RJEŠENJA KOD IMPLEMENTACIJE PRINTANJA
+==============================================
+
+1. PROBLEM: Print prozor se otvarao kao novi tab i sakrivao aplikaciju
+RJEŠENJE: 
+- Korištenje window.open() s posebnim parametrima za popup
+- Kod: window.open('', '', 'width=800,height=600,top=50,left=50,toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes');
+
+2. PROBLEM: Prozor se nije automatski zatvarao nakon odustajanja od printa
+RJEŠENJE:
+- Dodana provjera fokusa i interval za detekciju zatvaranja print dijaloga
+- Kod:
+  let printDialogClosed = false;
+  const checkPrintDialog = setInterval(() => {
+      if (!printDialogClosed && !printWindow.document.hasFocus()) {
+          printWindow.close();
+      }
+  }, 100);
+
+3. PROBLEM: Zadaci nisu bili vidljivi u print pregledu
+RJEŠENJE:
+- Dodano čekanje da se sadržaj učita (printWindow.onload)
+- Dodan timeout prije pokretanja printa
+- Kod:
+  printWindow.onload = () => {
+      setTimeout(() => {
+          printWindow.print();
+      }, 500);
+  };
+
+4. PROBLEM: Stilovi nisu bili prilagođeni za print
+RJEŠENJE:
+- Dodani specifični print stilovi
+- Kod:
+  @page {
+      size: A4;
+      margin: 2cm;
+  }
+  .print-task {
+      page-break-inside: avoid;
+  }
+
+5. PROBLEM: Memorijsko curenje zbog intervala
+RJEŠENJE:
+- Dodano čišćenje intervala nakon 10 sekundi
+- Kod:
+  setTimeout(() => {
+      clearInterval(checkPrintDialog);
+  }, 10000);
+
+6. PROBLEM: Sadržaj se nije pravilno renderirao
+RJEŠENJE:
+- Dodano zatvaranje dokumenta nakon pisanja
+- Kod:
+  printWindow.document.write(printContent);
+  printWindow.document.close();
+
+NAPOMENA: Ovaj popis problema i rješenja koristiti kao checklist pri implementaciji 
+printa u drugim aplikacijama kako bismo izbjegli iste probleme.

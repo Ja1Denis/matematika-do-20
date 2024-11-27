@@ -267,21 +267,34 @@ class NumberLineGame {
         let printContent = `
             <style>
                 @media print {
-                    body { font-family: Arial, sans-serif; }
+                    body { 
+                        font-family: Arial, sans-serif;
+                        padding: 20px;
+                        margin: 0;
+                    }
                     .print-task { 
                         font-size: 16pt; 
                         margin: 30px 0;
                         page-break-inside: avoid;
+                        clear: both;
                     }
                     .number-line {
                         width: 100%;
                         height: 100px;
                         margin: 10px 0;
+                        display: block;
                     }
                     h2 { 
                         font-size: 20pt; 
                         text-align: center;
                         margin-bottom: 30px;
+                    }
+                    @page {
+                        size: A4;
+                        margin: 2cm;
+                    }
+                    .no-print {
+                        display: none !important;
                     }
                 }
             </style>
@@ -323,43 +336,50 @@ class NumberLineGame {
         // Nacrtaj brojevne linije na svim canvasima
         document.querySelectorAll('.number-line').forEach(canvas => {
             const ctx = canvas.getContext('2d');
-            const lineY = 50;
-            const startX = 30;
-            const endX = 770;
-            const stepWidth = (endX - startX) / 20;
-
-            // Nacrtaj glavnu liniju
-            ctx.beginPath();
-            ctx.moveTo(startX, lineY);
-            ctx.lineTo(endX, lineY);
-            ctx.strokeStyle = '#333';
-            ctx.lineWidth = 2;
-            ctx.stroke();
-
-            // Nacrtaj oznake i brojeve
-            for (let i = 0; i <= 20; i++) {
-                const x = startX + (i * stepWidth);
-                
-                ctx.beginPath();
-                ctx.moveTo(x, lineY - 10);
-                ctx.lineTo(x, lineY + 10);
-                ctx.stroke();
-
-                ctx.font = '12px Arial';
-                ctx.fillStyle = '#333';
-                ctx.textAlign = 'center';
-                ctx.fillText(i.toString(), x, lineY + 25);
-            }
+            this.drawNumberLine(ctx);
         });
 
-        // Print
-        window.print();
+        // Dodaj malo vremena za renderiranje canvasa
+        setTimeout(() => {
+            window.print();
+            // Vrati originalni sadržaj nakon ispisa
+            document.body.innerHTML = originalContent;
+            // Ponovno inicijaliziraj igru
+            this.initializeGame();
+        }, 100);
+    }
 
-        // Vrati originalni sadržaj
-        document.body.innerHTML = originalContent;
+    drawNumberLine(ctx) {
+        const lineY = 50;
+        const startX = 30;
+        const endX = 770;
+        const stepWidth = (endX - startX) / 20;
 
-        // Ponovno inicijaliziraj igru
-        this.initializeGame();
+        // Očisti canvas prije crtanja
+        ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+        // Nacrtaj glavnu liniju
+        ctx.beginPath();
+        ctx.moveTo(startX, lineY);
+        ctx.lineTo(endX, lineY);
+        ctx.strokeStyle = '#333';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        // Nacrtaj oznake i brojeve
+        for (let i = 0; i <= 20; i++) {
+            const x = startX + (i * stepWidth);
+            
+            ctx.beginPath();
+            ctx.moveTo(x, lineY - 10);
+            ctx.lineTo(x, lineY + 10);
+            ctx.stroke();
+
+            ctx.font = '12px Arial';
+            ctx.fillStyle = '#333';
+            ctx.textAlign = 'center';
+            ctx.fillText(i.toString(), x, lineY + 25);
+        }
     }
 
     initializeGame() {
